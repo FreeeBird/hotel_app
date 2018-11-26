@@ -10,7 +10,7 @@ export function addOrder(data) {
   })
 }
 
-export function del(data) {
+export function delOrder(data) {
   return request({
     url: URL + '/delete',
     method: 'post',
@@ -20,17 +20,30 @@ export function del(data) {
   })
 }
 
-export function update(data) {
+export function cancelOrder(id) {
+  return request({
+    url: URL + '/cancel',
+    method: 'post',
+    data: {
+      orderId: id
+    }
+  })
+}
+
+export function updateOrder(id,status) {
   return request({
     url: URL + '/update',
     method: 'post',
-    data: data
+    data: {
+      orderId: id,
+      orderStatus: status
+    }
   })
 }
 
 export function getOrderByUserId(data) {
   return request({
-    url: URL + '/withUserId',
+    url: URL + '/userOrder',
     method: 'post',
     data: {
       userId: data

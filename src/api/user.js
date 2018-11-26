@@ -22,3 +22,14 @@ export function getUserInfoByUsername(username) {
     }
   })
 }
+
+export function getUserInfoById(id) {
+  return request({
+    url: URL + '/withId',
+    method: 'post',
+    data: {
+      userId: id
+    }
+  })
+}
+

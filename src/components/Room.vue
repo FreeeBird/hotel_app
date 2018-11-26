@@ -2,12 +2,12 @@
     <div id="room">
       <mu-container class="roomPaper">
         <mu-row>
-            <mu-appbar class="roomAppBar" style="width: 100%;">
+            <mu-appbar class="roomAppBar"  color="primary">
                 <mu-icon value="whatshot" slot="left"></mu-icon>
               热门房型
             </mu-appbar>
         </mu-row>
-        <mu-row  gutter>
+        <mu-row gutter>
           <mu-col xl="4" lg="4" md="6" sm="12" span="12"  v-for="rt in roomTypeList" :key="rt.typeId">
             <mu-card style="width: 100%; margin: 10px auto;"  raised>
               <mu-card-media :title="rt.roomType" :sub-title="rt.remark">
@@ -37,7 +37,7 @@
                     <mu-button flat color="">
                       <mu-icon left value="local_atm"></mu-icon>价格：￥{{ rt.price }}
                     </mu-button>
-                    &nbsp;<mu-button flat color="">
+                    &nbsp;<mu-button flat color="red">
                     <mu-icon left value="arrow_downward"></mu-icon>折扣： {{ rt.discount }}%
                   </mu-button>
                   </mu-list-item>
@@ -45,7 +45,7 @@
                     <mu-button flat>
                       <mu-icon left value="filter_tilt_shift"></mu-icon>
                       剩余空房：30</mu-button>
-                    <mu-button color="greenA700" @click="book(rt.typeId)">立即预订</mu-button>
+                    <mu-button color="primary" @click="book(rt.typeId)">立即预订</mu-button>
                   </mu-list-item>
                 </mu-list>
                 <!--<mu-card-actions>-->
@@ -104,16 +104,24 @@
     padding: 0;
   }
   .roomAppBar{
+    /*position: -webkit-sticky;*/
+    /*position: sticky;*/
+    /*top: 0;*/
+    /*z-index: 102;*/
     height: 40px;
     width: auto!important;
-    border-radius: 35px;
+    border-radius: 30px;
+    /*position: -webkit-sticky;*/
+    /*position: sticky;*/
+    /*top: 0;*/
     margin: 10px;
-    background-color: #e91e63;
+    /*background-color: #e91e63;*/
     color: #fff;
+    padding: 10px;
   }
 .roomPaper{
   margin: 20px auto 0;
-  padding: 10px;
+  padding: 20px 0;
 }
   .roomDetail .mu-button {
     width: 50%;

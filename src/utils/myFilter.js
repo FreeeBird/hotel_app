@@ -51,11 +51,14 @@ const vFilter = {
   getStatusColor(val){
     var status = ''
     switch (val) {
+      case -2:
+        status = 'info'
+        break;
       case -1:
-        status = 'error'
+        status = ''
         break;
       case 0:
-        status = 'warning'
+        status = 'error'
         break;
       case 1:
         status = 'success'

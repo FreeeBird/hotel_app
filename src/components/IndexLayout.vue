@@ -1,6 +1,6 @@
 <template>
   <div id="index" >
-  <mu-appbar style="width: 100%;" class="appBar" z-depth="0">
+  <mu-appbar style="width: 100%;" class="appBar" z-depth="5" color="primary">
     <mu-button icon slot="left" @click="open = !open">
       <mu-icon value="menu"></mu-icon>
     </mu-button>
@@ -123,6 +123,10 @@
 </script>
 
 <style scoped>
+  #index{
+    padding: 0;
+
+  }
   .appBar{
     color: #fff;
     position: fixed;
@@ -131,16 +135,17 @@
     top: 0;
     z-index: 101;
     overflow: hidden;
-    height:64px;
-    background-image: linear-gradient(270deg,#8146b4,#6990f6);
+    height:60px;
+    /*background-image: linear-gradient(270deg,#8146b4,#6990f6);*/
   }
   .footer{;
     text-align: center;
     color: #fff;
     padding: 50px 40px;
-    background-image: linear-gradient(270deg,#8146b4,#6990f6);
+    /*background-image: linear-gradient(270deg,#8146b4,#6990f6);*/
+    background-color: #2196f3;
   }
   .layout{
-    margin-top: 64px;
+    margin-top: 60px;
   }
 </style>

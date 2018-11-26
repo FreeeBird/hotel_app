@@ -2,7 +2,7 @@
   <div class="hello">
         <mu-paper class="banner">
           <img src="../assets/logo26.png" class="logo">
-          <h1>HO大酒店</h1>
+          <h1>{{ hotelInfo.hotelName }}</h1>
           <h2>一家国际化连锁经营的大型酒店</h2>
           <p v-if="!isLogin()">
             <mu-button color="secondary" @click="navigateTo('/login')">
@@ -144,7 +144,8 @@
     text-align: center;
     color: #fff;
     padding: 50px 40px;
-    background-image: linear-gradient(270deg,#8146b4,#6990f6);
+    background-color: #2196f3;
+    /*background-image: linear-gradient(270deg,#8146b4,#6990f6);*/
   }
 .gridlist-inline-demo {
 

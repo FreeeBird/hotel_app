@@ -2,28 +2,31 @@
   <div id="order">
     <mu-container class="orderContainer">
       <mu-row>
-        <mu-appbar class="orderAppBar">
+        <mu-appbar class="orderAppBar" color="primary">
           <mu-icon value="account_balance_wallet" slot="left"></mu-icon>
           我的订单
         </mu-appbar>
       </mu-row>
       <mu-list textline="three-line" class="orderList">
         <mu-row gutter>
-          <mu-col xl="12" lg="12" md="12" sm="12" span="12">
-            <mu-list-item avatar button :ripple="true" class="orderItem" v-for="order in orderList" @click="toDetail(order.orderId)" :key="order.orderId">
+          <mu-col xl="12" lg="12" md="12" sm="12" span="12" >
+            <!--:style="'background-color:'+ getStaColor(order.orderStatus)"-->
+            <mu-list-item   avatar button :ripple="true" class="orderItem" v-for="order in orderList" @click="toDetail(order.orderId)" :key="order.orderId">
               <mu-list-item-action>
                 <!--<mu-avatar text-color="primary">-->
-                  <mu-icon value="payment" color="secondary"></mu-icon>
+                  <mu-icon value="payment" color="primary"></mu-icon>
                 <!--</mu-avatar>-->
               </mu-list-item-action>
               <mu-list-item-content>
-                <mu-list-item-title style="color: black;font-size: 1.2em;font-weight: bolder">{{ order.roomType }}  <mu-badge :content="order.orderType" color="teal"></mu-badge></mu-list-item-title>
+                <mu-list-item-title style="color: black;font-size: 1.2em;font-weight: bolder">{{ order.roomType }}
+                  <!--<mu-badge :content="order.orderType" color="primary"></mu-badge>-->
+                </mu-list-item-title>
                 <mu-list-item-sub-title>预订日期：{{ order.orderDate | formatDate }} 到 {{ order.orderDate | addDate(order.orderDays) }}</mu-list-item-sub-title>
                 <mu-list-item-sub-title>订单消费：￥ {{ order.orderCost }}</mu-list-item-sub-title>
               </mu-list-item-content>
               <mu-list-item-action>
                 <mu-badge :content="order.orderStatus|getOrderStatus" :color="order.orderStatus|getStatusColor"></mu-badge>
-                <mu-button small round color="green">查看详情</mu-button>
+                <!--<mu-button small round color="green">查看详情</mu-button>-->
               </mu-list-item-action>
             </mu-list-item>
           </mu-col>
@@ -53,7 +56,29 @@
           navigateTo(val){
             this.$router.push(val)
           },
+        getStaColor(val){
+          var status = ''
+          switch (val) {
+            case -1:
+              status = 'error'
+              break;
+            case 0:
+              status = 'warning'
+              break;
+            case 1:
+              status = 'greenA400'
+              break;
+            case 2:
+              status = '#2196f3'
+              break;
+            case 3:
+              status = 'info'
+              break;
+          }
+          return status
+        },
         toDetail(id){
+          Cookie.set("order_id",id)
             this.$router.push({
               path: '/orderDetail',
               name: 'OrderDetail',
@@ -78,9 +103,12 @@
   .orderAppBar{
     height: 40px;
     width: auto!important;
-    border-radius: 35px;
+    border-radius: 30px;
+    /*position: -webkit-sticky;*/
+    /*position: sticky;*/
+    /*top: 0;*/
     margin: 10px;
-    background-color: #e91e63;
+    /*background-color: #e91e63;*/
     color: #fff;
     padding: 10px;
   }
