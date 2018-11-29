@@ -2,7 +2,7 @@
     <div id="makeOrder">
       <mu-container class="container">
         <mu-row>
-          <mu-appbar class="appBar">
+          <mu-appbar class="appBar" color="primary">
             <mu-icon value="inbox" slot="left"></mu-icon>
             <span>正在预订</span>
           </mu-appbar>
@@ -23,15 +23,15 @@
               <mu-date-input icon="today" label="入住日期" :min-date="minDate" v-model="form.orderDate" format="YYYY 年 MM 月 DD 日入住" label-float full-width></mu-date-input>
             <mu-date-input icon="today" :disabled="form.orderDate == null" label="离店日期" :min-date="form.orderDate" v-model="leaveDate" format="YYYY 年 MM 月 DD 日离店" label-float full-width></mu-date-input>
             <mu-form-item icon="access_time">
-              <mu-button flat color="secondary">共{{ form.orderDays }}晚</mu-button>
+              <mu-button flat color="primary">共{{ form.orderDays }}晚</mu-button>
             </mu-form-item>
           </mu-form>
-          <mu-button color="teal" style="width: 100%" flat="">订单消费总共 ￥ {{ form.orderCost }}</mu-button>
+          <mu-button color="primary" style="width: 100%" flat="">订单消费总共 ￥ {{ form.orderCost }}</mu-button>
         </mu-card-text>
         <mu-card-actions>
-          <mu-button color="teal" style="width: 49%" @click="goBack">取消</mu-button>
+          <mu-button color="secondary" style="width: 49%" @click="goBack">取消</mu-button>
           <!--<mu-button>Action 1</mu-button>-->
-          <mu-button color="secondary"  style="width: 49%" @click="submitOrder">提交订单</mu-button>
+          <mu-button color="primary"  style="width: 49%" @click="submitOrder">提交订单</mu-button>
         </mu-card-actions>
         </mu-card>
       </mu-container>
@@ -53,17 +53,20 @@
               { validate: (val) => !!val, message: '必须填写联系手机号'},
             ],
             minDate: new Date(),
+            minDate2: null,
             leaveDate: null,
-            typeId: null,
+            roomTypeId: null,
             roomType: {
               roomType: null,
 
             },
             form: {
+              orderTypeId: 2,
               orderType: '官网预订',
               userId: Cookie.get("user_id"),
               name: null,
               phone: null,
+              roomTypeId: null,
               roomType: null,
               orderDate: null,
               orderDays: 0,
@@ -85,12 +88,13 @@
       },
       methods:{
           fetchData(){
-            this.typeId = this.$route.params.typeId
-            if (this.typeId == null){
+            this.roomTypeId = this.$route.params.typeId
+            this.form.roomTypeId = this.roomTypeId
+            if (this.roomTypeId == null){
               this.$router.back()
               return
             }
-            getRoomTypeById(this.typeId).then(res => {
+            getRoomTypeById(this.roomTypeId).then(res => {
               this.roomType = res;
               this.form.roomType = this.roomType.roomType
             })
@@ -127,7 +131,6 @@
     /*width: 100%;*/
     border-radius: 15px;
     margin: 10px;
-    background-color: #e91e63;
     color: #fff;
     padding: 10px;
   }

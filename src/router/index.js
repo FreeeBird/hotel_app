@@ -9,11 +9,13 @@ import MyProfile from '@/components/MyProfile'
 import Order from '@/components/Order'
 import MakeOrder from "@/components/MakeOrder";
 import OrderDetail from "@/components/OrderDetail";
+import Register from "@/components/Register";
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    { path: '/register', name: 'Register', component: Register },
     { path: '/login', name: 'Login', component: Login },
     { path: '/404', name: '404', component: page404 },
     {

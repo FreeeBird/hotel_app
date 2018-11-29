@@ -79,7 +79,7 @@
 </template>
 
 <script>
-  import { getOrderById, updateOrder,cancelOrder } from "@/api/order";
+  import {getOrderById, cancelOrder, payOrder} from "@/api/order";
   import Cookie from 'js-cookie'
   import { getUserInfoById,userLogin } from "@/api/user";
 
@@ -166,7 +166,7 @@
             const username = Cookie.get("username")
           userLogin(username,this.password).then(res => {
             if (res === 1){
-              updateOrder(this.orderId,this.orderStatus).then(res => {
+              payOrder(this.orderId).then(res => {
                 if (res === 1){
                   this.$toast.success("支付成功！")
                   this.openPass = false

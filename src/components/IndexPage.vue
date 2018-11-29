@@ -8,11 +8,11 @@
             <mu-button color="secondary" @click="navigateTo('/login')">
               立即登录
             </mu-button>
-            <mu-button @click="navigateTo('/404')">立即注册</mu-button>
+            <mu-button @click="navigateTo('/register')">立即注册</mu-button>
           </p>
           <p v-else="isLogin">
             <mu-button color="secondary" @click="navigateTo('/room')">浏览热门客房</mu-button>
-            <mu-button color="primary" @click="navigateTo('/order')">查看个人订单</mu-button>
+            <mu-button color="" @click="navigateTo('/order')">查看个人订单</mu-button>
           </p>
         </mu-paper>
     <!-- -->
@@ -125,7 +125,8 @@
     /*margin-top: 64px;*/
     display: flex;
     flex-direction: column;
-    background-image: linear-gradient(270deg,#8146b4,#6990f6);
+    /*background-image: linear-gradient(270deg,#8146b4,#6990f6);*/
+    background-color: #2196f3;
     height: 600px;
     align-items: center;
     justify-content: center;

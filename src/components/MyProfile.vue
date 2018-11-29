@@ -2,8 +2,8 @@
     <div id="myProfile">
       <mu-container class="profilePaper">
         <mu-row>
-          <mu-appbar class="profileAppBar">
-            <mu-icon value="contacts"></mu-icon>
+          <mu-appbar class="profileAppBar" color="primary">
+            <mu-icon value="contacts"slot="left"></mu-icon>
             我的个人资料
           </mu-appbar>
         </mu-row>
@@ -89,7 +89,6 @@
     width: auto!important;
     border-radius: 35px;
     margin: 10px;
-    background-color: #e91e63;
     color: #fff;
     padding: 10px;
   }

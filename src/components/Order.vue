@@ -11,10 +11,14 @@
         <mu-row gutter>
           <mu-col xl="12" lg="12" md="12" sm="12" span="12" >
             <!--:style="'background-color:'+ getStaColor(order.orderStatus)"-->
-            <mu-list-item   avatar button :ripple="true" class="orderItem" v-for="order in orderList" @click="toDetail(order.orderId)" :key="order.orderId">
+            <mu-list-item   avatar button :ripple="true" class="orderItem" v-for="(order,index) in orderList" @click="toDetail(order.orderId)" :key="order.orderId">
               <mu-list-item-action>
                 <!--<mu-avatar text-color="primary">-->
-                  <mu-icon value="payment" color="primary"></mu-icon>
+                <mu-button style="min-width: 20px" color="primary">
+                  <!--<mu-icon value="payment" color="primary"></mu-icon>-->
+                  {{ index + 1 }}
+                </mu-button>
+
                 <!--</mu-avatar>-->
               </mu-list-item-action>
               <mu-list-item-content>

@@ -41,6 +41,16 @@ export function updateOrder(id,status) {
   })
 }
 
+export function payOrder(id) {
+  return request({
+    url: URL + '/pay',
+    method: 'post',
+    data: {
+      orderId: id,
+    }
+  })
+}
+
 export function getOrderByUserId(data) {
   return request({
     url: URL + '/userOrder',

@@ -12,13 +12,13 @@
         </mu-form-item>
         <mu-form-item >
           <mu-button flat>忘记密码？</mu-button>
-          <mu-button flat>立即注册</mu-button>
+          <mu-button flat @click="navigateTo('/register')">立即注册</mu-button>
         </mu-form-item>
       </mu-card-text>
       <mu-card-actions>
         <mu-form-item>
           <mu-button v-loading="btnLoading" color="secondary" @click="submit">登录</mu-button>
-          <mu-button @click="clear">重置</mu-button>
+          <mu-button @click="navigateTo('/')">先随便逛逛</mu-button>
         </mu-form-item>
       </mu-card-actions>
       </mu-form>
@@ -36,11 +36,9 @@
           return {
             usernameRules: [
               { validate: (val) => !!val, message: '必须填写用户名'},
-              { validate: (val) => val.length >= 3, message: '用户名长度大于3'}
             ],
             passwordRules: [
               { validate: (val) => !!val, message: '必须填写密码'},
-              { validate: (val) => val.length >= 3 && val.length <= 10, message: '密码长度大于3小于10'}
             ],
             validateForm: {
               username: '',
@@ -93,18 +91,18 @@
 
 <style scoped>
   .login-container{
-    height: -webkit-fill-available;
     width: 100%;
+    height: -webkit-fill-available;
     background-image: linear-gradient(270deg,#8146b4,#6990f6);
     padding: 8px;
   }
   .mu-demo-form {
     width: 100%;
-    max-width: 460px;
+    /*max-width: 460px;*/
   }
   .login-card{
     width: 100%;
-    max-width: 375px;
+    max-width: 400px;
     margin: 50px auto;
   }
 </style>

@@ -13,6 +13,14 @@ export function userLogin(username, password) {
   })
 }
 
+export function userRegister(data) {
+  return request({
+    url: URL + '/register',
+    method: 'post',
+    data: data
+  })
+}
+
 export function getUserInfoByUsername(username) {
   return request({
     url: URL + '/withUsername',

@@ -1,6 +1,6 @@
 <template>
   <div id="index" >
-  <mu-appbar style="width: 100%;" class="appBar" z-depth="5" color="primary">
+  <mu-appbar style="width: 100%;" class="appBar" z-depth="0" color="primary">
     <mu-button icon slot="left" @click="open = !open">
       <mu-icon value="menu"></mu-icon>
     </mu-button>
