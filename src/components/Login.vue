@@ -8,7 +8,7 @@
           <mu-text-field v-model="validateForm.username" prop="username"></mu-text-field>
         </mu-form-item>
         <mu-form-item label="密码" prop="password" :rules="passwordRules">
-          <mu-text-field type="password" v-model="validateForm.password" prop="password"></mu-text-field>
+          <mu-text-field type="password" v-model="validateForm.password" prop="password" @keyup.enter="submit"></mu-text-field>
         </mu-form-item>
         <mu-form-item >
           <mu-button flat>忘记密码？</mu-button>
