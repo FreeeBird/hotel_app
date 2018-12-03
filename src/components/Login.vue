@@ -17,7 +17,7 @@
       </mu-card-text>
       <mu-card-actions>
         <mu-form-item>
-          <mu-button v-loading="btnLoading" color="secondary" @click="submit">登录</mu-button>
+          <mu-button color="secondary" @click="submit">登录</mu-button>
           <mu-button @click="navigateTo('/')">先随便逛逛</mu-button>
         </mu-form-item>
       </mu-card-actions>
@@ -54,10 +54,13 @@
           },
         submit () {
           this.$refs.form.validate().then((result) => {
-            console.log('form valid: ', result)
+            if (result == false){
+              this.$toast.warning("请填入账户密码！")
+              return
+            } else {
+              this.login()
+            }
           });
-          this.login()
-          this.btnLoading = false
         },
         clear () {
           this.$refs.form.clear();
@@ -67,7 +70,6 @@
           };
         },
         login() {
-          this.btnLoading = true
           userLogin(this.validateForm.username,this.validateForm.password).then(res => {
             if (res === 1){
               Cookies.set('username',this.validateForm.username)
@@ -77,11 +79,9 @@
               })
               this.navigateTo('/')
             }else if (res === 0) {
-              this.$toast.message("用户名或密码不正确！")
-              this.btnLoading = false
+              this.$toast.error("用户名或密码不正确！")
             }
           }).catch(err => {
-            this.btnLoading = false
             console.log(err)
           })
         },
