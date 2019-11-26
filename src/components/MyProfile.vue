@@ -3,7 +3,7 @@
       <mu-container class="profilePaper">
         <mu-row>
           <mu-appbar class="profileAppBar" color="primary">
-            <mu-icon value="contacts"slot="left"></mu-icon>
+            <mu-icon value="contacts" slot="left"></mu-icon>
             我的个人资料
           </mu-appbar>
         </mu-row>
@@ -56,14 +56,15 @@
 
 <script>
   import Cookies from 'js-cookie'
-  import { getUserInfoByUsername } from "@/api/user"
+  import { getUserInfo } from "@/api/user"
     export default {
         name: "MyProfile",
       data(){
           return{
-            username: Cookies.get("username"),
+            //username: Cookies.get("username"),
             userInfo: {
-              username: null,
+              userId: 0,
+              username: "username",
               createTime: null,
             },
         }
@@ -73,8 +74,8 @@
       },
       methods:{
           fetchData(){
-            getUserInfoByUsername(this.username).then(res => {
-              this.userInfo = res;
+            getUserInfo().then(res => {
+              this.userInfo = res.data;
             }).catch(err => {
               this.$toast.error(err)
             })

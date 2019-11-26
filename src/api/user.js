@@ -4,7 +4,7 @@ const URL = 'user'
 
 export function userLogin(username, password) {
   return request({
-    url: URL + '/login',
+    url:  'login/user',
     method: 'post',
     data: {
       username,
@@ -27,6 +27,16 @@ export function getUserInfoByUsername(username) {
     method: 'post',
     data: {
       username
+    }
+  })
+}
+
+export function getUserInfo() {
+  return request({
+    url: URL + '/profile',
+    method: 'post',
+    data: {
+      // username
     }
   })
 }

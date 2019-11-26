@@ -91,7 +91,7 @@
           },
           fetchData(){
             getAllRoomType().then(res => {
-              this.roomTypeList = res;
+              this.roomTypeList = res.data;
             })
           },
         book(typeId){

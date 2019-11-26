@@ -50,7 +50,7 @@
 
 <script>
   import Cookie from 'js-cookie'
-  import { getOrderByUserId } from "@/api/order";
+  import { getOrders } from "@/api/order";
   export default {
         name: "order",
     data(){
@@ -101,9 +101,10 @@
             })
         },
           fetchData(){
-            getOrderByUserId(this.userId).then(res => {
-              this.orderList = res;
-              this.listSize = res.length;
+            getOrders(this.userId).then(res => {
+              const data = res.data;
+              this.orderList = data;
+              this.listSize = data.length;
             })
           },
         test(){

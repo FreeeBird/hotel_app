@@ -81,7 +81,7 @@
 <script>
   import {getOrderById, cancelOrder, payOrder} from "@/api/order";
   import Cookie from 'js-cookie'
-  import { getUserInfoById,userLogin } from "@/api/user";
+  import { getUserInfo,userLogin } from "@/api/user";
 
   export default {
         name: "OrderDetail",
@@ -117,13 +117,13 @@
               return
             }
             getOrderById(this.orderId).then(res => {
-              this.order = res;
+              this.order = res.data;
             }).catch(err => {
               this.$toast.error(err)
             })
             const userId = Cookie.get("user_id")
-            getUserInfoById(userId).then(res => {
-              this.userInfo = res;
+            getUserInfo().then(res => {
+              this.userInfo = res.data;
             }).catch(err => {
               this.$toast.error(err)
             })
@@ -164,10 +164,8 @@
         pay(){
             this.payLoading = true
             const username = Cookie.get("username")
-          userLogin(username,this.password).then(res => {
-            if (res === 1){
-              payOrder(this.orderId).then(res => {
-                if (res === 1){
+          payOrder(this.orderId,username,this.password).then(res => {
+                if (res.code === 1000){
                   this.$toast.success("支付成功！")
                   this.openPass = false
                   this.$router.go(0)
@@ -177,12 +175,6 @@
               }).catch(err => {
                 this.$toast.error(err)
               })
-            } else {
-              this.$toast.error("密码错误！")
-            }
-          }).catch(err => {
-            this.$toast.error(err)
-          })
           this.payLoading = false
         },
         cancelOrder(){

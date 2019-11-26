@@ -108,11 +108,14 @@
           },
         logout(){
           Cookies.remove("username")
-          this.navigateTo("/login")
+          Cookies.remove("user_id")
+          Cookies.remove("session")
+          Cookies.remove("order_id")
+          this.navigateTo("/")
         },
         fetchData(){
           getAllHotel().then(res => {
-            this.hotelInfo = res[0]
+            this.hotelInfo = res.data[0]
           }).catch(err => {
             console.log(err)
             this.$toast.error(err.toString())
@@ -138,7 +141,7 @@
     height:60px;
     /*background-image: linear-gradient(270deg,#8146b4,#6990f6);*/
   }
-  .footer{;
+  .footer{
     text-align: center;
     color: #fff;
     padding: 50px 40px;

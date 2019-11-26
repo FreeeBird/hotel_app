@@ -95,7 +95,7 @@
               return
             }
             getRoomTypeById(this.roomTypeId).then(res => {
-              this.roomType = res;
+              this.roomType = res.data;
               this.form.roomType = this.roomType.roomType
             })
           },
@@ -111,11 +111,12 @@
             }
             // this.form.orderDate = this.form.orderDate.toString()
             addOrder(this.form).then(res => {
-              if (res === 1){
-                this.$toast.success("提交成功")
+              const re = res;
+              if (re.code === 1000){
+                this.$toast.success(re.message)
                 this.$router.push('/order')
               }else {
-                this.$toast.error("提交失败！")
+                this.$toast.success(re.message)
               }
             }).catch(err => {
               this.$toast.error(err.toString())

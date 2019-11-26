@@ -40,7 +40,7 @@ export function getById(roomId) {
 
 export function getAllHotel() {
   return request({
-    url: URL + '/all',
+    url: URL + '',
     method: 'post'
   })
 }

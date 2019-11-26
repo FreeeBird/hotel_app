@@ -15,7 +15,7 @@ import Cookies from 'js-cookie'
 
 
 const toastConfig = {
-  position: 'top',               // 弹出的位置
+  position: 'bottom-start',               // 弹出的位置
   time: 2000,                       // 显示的时长
   closeIcon: 'close',               // 关闭的图标
   close: true,                      // 是否显示关闭按钮

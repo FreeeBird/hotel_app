@@ -10,12 +10,8 @@ export default {
   methods: {
     isLogin() {
       const username = Cookies.get("username")
-      if (username == null || username === '') {
-        return false;
-      }
-      else {
-        return true
-      }
+      if (username == null || username === '') return false;
+      return true
     }
   }
 }
@@ -23,13 +19,4 @@ export default {
 
 <style>
 @import url(./assets/iconfont/material-icons.css);
-
-  /*#app {*/
-  /*!*font-family: 'Avenir', Helvetica, Arial, sans-serif;*!*/
-  /*-webkit-font-smoothing: antialiased;*/
-  /*-moz-osx-font-smoothing: grayscale;*/
-  /*!*text-align: center;*!*/
-  /*!*color: #2c3e50;*!*/
-/*}*/
-
 </style>

@@ -6,12 +6,14 @@
           <h2>一家国际化连锁经营的大型酒店</h2>
           <p v-if="!isLogin()">
             <mu-button color="secondary" @click="navigateTo('/login')">
-              立即登录
+              <b>立即登录</b>
             </mu-button>
             <mu-button @click="navigateTo('/register')">立即注册</mu-button>
           </p>
-          <p v-else="isLogin">
-            <mu-button color="secondary" @click="navigateTo('/room')">浏览热门客房</mu-button>
+          <p v-else="isLogin()">
+            <mu-button color="secondary" @click="navigateTo('/room')">
+            浏览热门客房
+            </mu-button>
             <mu-button color="" @click="navigateTo('/order')">查看个人订单</mu-button>
           </p>
         </mu-paper>
@@ -42,7 +44,7 @@
     </div>
     <!---->
     <div class="footer">
-      Copyright @ 2018 <b> {{ hotelInfo.hotelName }} </b><br>
+      Copyright @ 2019 <b> {{ hotelInfo.hotelName }} </b><br>
       地址：<b> {{ hotelInfo.address }} </b><br>
       电话号码： <b> {{ hotelInfo.telephone }} </b><br>
       电子邮箱：<b> {{ hotelInfo.email }} </b><br>
@@ -67,7 +69,8 @@
       indexImg2,
       indexImg3,
       hotelInfo: {
-        address: null
+        hotelName: "ho",
+        address: ""
       },
       list: [{
         image: colImg,
@@ -103,7 +106,7 @@
     },
     fetchData(){
       getAllHotel().then(res => {
-        this.hotelInfo = res[0]
+        this.hotelInfo = res.data[0]
       }).catch(err => {
         console.log(err)
         this.$toast.error(err.toString())
@@ -141,7 +144,7 @@
   .demo-paper img{
     width: 300px;
   }
-  .footer{;
+  .footer{
     text-align: center;
     color: #fff;
     padding: 50px 40px;

@@ -2,7 +2,7 @@
   <div class="login-container" >
     <mu-card class="login-card" raised>
       <mu-form ref="form" :model="validateForm" class="mu-demo-form">
-      <mu-card-title title="用户登录" sub-title="HO大酒店"></mu-card-title>
+      <mu-card-title sub-title="用户登录" title="HO大酒店"></mu-card-title>
       <mu-card-text>
         <mu-form-item label="用户名" help-text="" prop="username" :rules="usernameRules">
           <mu-text-field v-model="validateForm.username" prop="username"></mu-text-field>
@@ -71,15 +71,14 @@
         },
         login() {
           userLogin(this.validateForm.username,this.validateForm.password).then(res => {
-            if (res === 1){
+            var response = res;
+            if (response.data !== null){
               Cookies.set('username',this.validateForm.username)
-              getUserInfoByUsername(this.validateForm.username).then(res => {
-                this.userId = res.userId;
-                Cookies.set('user_id',this.userId)
-              })
+              Cookies.set('session',response.data.sessionId)
+              Cookies.set('user_id',response.data.userId)
               this.navigateTo('/')
-            }else if (res === 0) {
-              this.$toast.error("用户名或密码不正确！")
+            }else if (response.code !== 1000) {
+              this.$toast.error(response.message)
             }
           }).catch(err => {
             console.log(err)
